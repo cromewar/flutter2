@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:qr_reader/src/pages/direcciones_page.dart';
 import 'package:qr_reader/src/pages/historial_mapas_page.dart';
+import 'package:qr_reader/src/providers/db_provider.dart';
 import 'package:qr_reader/src/providers/ui_provider.dart';
 import 'package:qr_reader/src/widgets/custom_navigation_bar.dart';
 import 'package:qr_reader/src/widgets/scan_buttom.dart';
@@ -33,6 +34,10 @@ class _HomePageBody extends StatelessWidget {
   Widget build(BuildContext context) {
     final uiProvider = Provider.of<UiProvier>(context);
     final currentIndex = uiProvider.selectedMenuOpt;
+
+    // TODO: Temporal leer base de datos
+    final tempScan = new SacanModel(valor: 'http://google.com');
+    DBProvider.db.nuevoScan(tempScan);
     switch (currentIndex) {
       case 0:
         return MapasPage();
