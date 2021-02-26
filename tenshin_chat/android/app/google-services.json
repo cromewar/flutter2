@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "719673547187",
+    "firebase_url": "https://tenshin-chat.firebaseio.com",
+    "project_id": "tenshin-chat",
+    "storage_bucket": "tenshin-chat.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:719673547187:android:365c30a66c2816716813c6",
+        "android_client_info": {
+          "package_name": "com.tenshin.chat"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "719673547187-ta1jjdk4se7qa5bc6bt38lu5keuq30tm.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBU1Xgq71lhdHgOVn2R4TN-3hYeu9c9jxk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "719673547187-ta1jjdk4se7qa5bc6bt38lu5keuq30tm.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
