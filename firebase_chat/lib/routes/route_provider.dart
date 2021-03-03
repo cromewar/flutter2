@@ -6,9 +6,9 @@ import 'package:flutter/material.dart';
 
 Map<String, WidgetBuilder> getAppRoutes() {
   return <String, WidgetBuilder>{
-    WelcomeScreen().id: (BuildContext context) => WelcomeScreen(),
-    RegistrationScreen().id: (BuildContext context) => RegistrationScreen(),
-    LoginScreen().id: (BuildContext context) => LoginScreen(),
-    ChatScreen().id: (BuildContext context) => ChatScreen(),
+    WelcomeScreen.id: (BuildContext context) => WelcomeScreen(),
+    RegistrationScreen.id: (BuildContext context) => RegistrationScreen(),
+    LoginScreen.id: (BuildContext context) => LoginScreen(),
+    ChatScreen.id: (BuildContext context) => ChatScreen(),
   };
 }
