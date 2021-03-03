@@ -1,3 +1,4 @@
+import 'package:firebase_chat/routes/route_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_chat/screens/welcome_screen.dart';
 import 'package:firebase_chat/screens/login_screen.dart';
@@ -16,7 +17,8 @@ class FlashChat extends StatelessWidget {
           bodyText1: TextStyle(color: Colors.black54),
         ),
       ),
-      home: WelcomeScreen(),
+      initialRoute: '/',
+      routes: getAppRoutes(),
     );
   }
 }
