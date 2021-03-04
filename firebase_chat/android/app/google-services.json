@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "1048008019430",
+    "project_id": "crome-chat",
+    "storage_bucket": "crome-chat.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1048008019430:android:1b7ece5b923354740b9a27",
+        "android_client_info": {
+          "package_name": "com.cromewar.crome_chat"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1048008019430-3suih8s0pej2puka0ngft45j4adfjdmr.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA-fxPvivfxmQLRSDKA6UuKKh3b488uJBE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1048008019430-3suih8s0pej2puka0ngft45j4adfjdmr.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

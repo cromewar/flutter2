@@ -1,3 +1,4 @@
+import 'package:firebase_chat/constants.dart';
 import 'package:firebase_chat/widgets/log_reg_buttons.dart';
 import 'package:flutter/material.dart';
 
@@ -8,6 +9,13 @@ class RegistrationScreen extends StatefulWidget {
 }
 
 class _RegistrationScreenState extends State<RegistrationScreen> {
+  String email, password;
+  bool _passwordHidden = true;
+  Icon _passwordIcon = Icon(
+    Icons.visibility_off,
+    color: Colors.grey,
+  );
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -29,49 +37,31 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
               height: 48.0,
             ),
             TextField(
+              textAlign: TextAlign.center,
+              keyboardType: TextInputType.emailAddress,
               onChanged: (value) {
+                email = value;
                 //Do something with the user input.
               },
-              decoration: InputDecoration(
-                hintText: 'Enter your email',
-                hintStyle: TextStyle(color: Colors.grey[600]),
-                contentPadding:
-                    EdgeInsets.symmetric(vertical: 10.0, horizontal: 20.0),
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.all(Radius.circular(32.0)),
-                ),
-                enabledBorder: OutlineInputBorder(
-                  borderSide: BorderSide(color: Colors.blueAccent, width: 1.0),
-                  borderRadius: BorderRadius.all(Radius.circular(32.0)),
-                ),
-                focusedBorder: OutlineInputBorder(
-                  borderSide: BorderSide(color: Colors.blueAccent, width: 2.0),
-                  borderRadius: BorderRadius.all(Radius.circular(32.0)),
-                ),
+              decoration: kTextFieldDecoration.copyWith(
+                hintText: 'Ingresar email',
               ),
             ),
             SizedBox(
               height: 8.0,
             ),
             TextField(
+              textAlign: TextAlign.center,
+              obscureText: _passwordHidden,
               onChanged: (value) {
+                password = value;
                 //Do something with the user input.
               },
-              decoration: InputDecoration(
-                hintText: 'Enter your password',
-                hintStyle: TextStyle(color: Colors.grey[600]),
-                contentPadding:
-                    EdgeInsets.symmetric(vertical: 10.0, horizontal: 20.0),
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.all(Radius.circular(32.0)),
-                ),
-                enabledBorder: OutlineInputBorder(
-                  borderSide: BorderSide(color: Colors.blueAccent, width: 1.0),
-                  borderRadius: BorderRadius.all(Radius.circular(32.0)),
-                ),
-                focusedBorder: OutlineInputBorder(
-                  borderSide: BorderSide(color: Colors.blueAccent, width: 2.0),
-                  borderRadius: BorderRadius.all(Radius.circular(32.0)),
+              decoration: kTextFieldDecoration.copyWith(
+                hintText: 'Ingresar contraseña',
+                suffix: InkWell(
+                  child: _passwordIcon,
+                  onTap: setHiddenPasword,
                 ),
               ),
             ),
@@ -81,11 +71,24 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
             LogRegWidget(
               color: Colors.blueAccent,
               text: 'Register',
-              onpress: () {},
+              onpress: () {
+                print(email);
+                print(password);
+              },
             )
           ],
         ),
       ),
     );
+  }
+
+  void setHiddenPasword() {
+    setState(() {
+      if (_passwordHidden == true) {
+        _passwordHidden = false;
+      } else {
+        _passwordHidden = true;
+      }
+    });
   }
 }

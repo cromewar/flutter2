@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
 class LogRegWidget extends StatelessWidget {
-  Function onpress;
-  String text;
-  Color color;
+  final Function onpress;
+  final String text;
+  final Color color;
   LogRegWidget({this.color, this.text, this.onpress});
   @override
   Widget build(BuildContext context) {
@@ -19,6 +19,7 @@ class LogRegWidget extends StatelessWidget {
           height: 42.0,
           child: Text(
             text,
+            style: TextStyle(color: Colors.white),
           ),
         ),
       ),
