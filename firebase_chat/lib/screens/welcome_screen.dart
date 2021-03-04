@@ -1,4 +1,6 @@
+import 'package:firebase_chat/widgets/log_reg_buttons.dart';
 import 'package:flutter/material.dart';
+import 'package:animated_text_kit/animated_text_kit.dart';
 
 class WelcomeScreen extends StatefulWidget {
   static String id = '/';
@@ -52,56 +54,36 @@ class _WelcomeScreenState extends State<WelcomeScreen>
                     height: 60.0,
                   ),
                 ),
-                Text(
-                  'Crome Chat_',
-                  style: TextStyle(
-                    color: Colors.black,
+                TypewriterAnimatedTextKit(
+                  text: ["Crome Chat"],
+                  textStyle: TextStyle(
                     fontSize: 45.0,
+                    color: Colors.grey[900],
                     fontWeight: FontWeight.w900,
                   ),
+                  textAlign: TextAlign.start,
+                  totalRepeatCount: 1,
+                  repeatForever: false,
+                  speed: Duration(milliseconds: 200),
                 ),
               ],
             ),
             SizedBox(
               height: 48.0,
             ),
-            Padding(
-              padding: EdgeInsets.symmetric(vertical: 16.0),
-              child: Material(
-                elevation: 5.0,
-                color: Colors.lightBlueAccent,
-                borderRadius: BorderRadius.circular(30.0),
-                child: MaterialButton(
-                  onPressed: () {
-                    //Go to login screen.
-                    Navigator.pushNamed(context, 'login');
-                  },
-                  minWidth: 200.0,
-                  height: 42.0,
-                  child: Text(
-                    'Log In',
-                  ),
-                ),
-              ),
+            LogRegWidget(
+              color: Colors.lightBlueAccent,
+              text: 'Log In',
+              onpress: () {
+                Navigator.pushNamed(context, 'login');
+              },
             ),
-            Padding(
-              padding: EdgeInsets.symmetric(vertical: 16.0),
-              child: Material(
-                color: Colors.blueAccent,
-                borderRadius: BorderRadius.circular(30.0),
-                elevation: 5.0,
-                child: MaterialButton(
-                  onPressed: () {
-                    //Go to registration screen.
-                    Navigator.pushNamed(context, 'registration');
-                  },
-                  minWidth: 200.0,
-                  height: 42.0,
-                  child: Text(
-                    'Registrarse',
-                  ),
-                ),
-              ),
+            LogRegWidget(
+              color: Colors.blueAccent,
+              text: 'Register',
+              onpress: () {
+                Navigator.pushNamed(context, 'registration');
+              },
             ),
           ],
         ),
