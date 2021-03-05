@@ -1,6 +1,7 @@
 import 'package:firebase_chat/constants.dart';
 import 'package:firebase_chat/widgets/log_reg_buttons.dart';
 import 'package:flutter/material.dart';
+import 'package:firebase_chat/utils/hidden_buttom.dart';
 
 class RegistrationScreen extends StatefulWidget {
   static const String id = 'registration';
@@ -61,7 +62,13 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                 hintText: 'Ingresar contraseña',
                 suffix: InkWell(
                   child: _passwordIcon,
-                  onTap: setHiddenPasword,
+                  onTap: () {
+                    setState(() {
+                      _passwordHidden = setHiddenPasword2(_passwordHidden);
+                      _passwordIcon =
+                          getHiddenIcon(_passwordIcon, _passwordHidden);
+                    });
+                  },
                 ),
               ),
             ),
@@ -80,15 +87,5 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
         ),
       ),
     );
-  }
-
-  void setHiddenPasword() {
-    setState(() {
-      if (_passwordHidden == true) {
-        _passwordHidden = false;
-      } else {
-        _passwordHidden = true;
-      }
-    });
   }
 }
