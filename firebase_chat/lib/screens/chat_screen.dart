@@ -1,4 +1,5 @@
 import 'package:firebase_chat/constants.dart';
+import 'package:firebase_chat/widgets/message_bubble.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -10,6 +11,7 @@ class ChatScreen extends StatefulWidget {
 }
 
 class _ChatScreenState extends State<ChatScreen> {
+  final messageTextController = TextEditingController();
   final _firestore = FirebaseFirestore.instance;
   final _auth = FirebaseAuth.instance;
   User loggedInUser;
@@ -71,6 +73,7 @@ class _ChatScreenState extends State<ChatScreen> {
                 children: <Widget>[
                   Expanded(
                     child: TextField(
+                      controller: messageTextController,
                       onChanged: (value) {
                         //Do something with the user input.
                         messageText = value;
@@ -80,14 +83,16 @@ class _ChatScreenState extends State<ChatScreen> {
                   ),
                   TextButton(
                     onPressed: () {
+                      messageTextController.clear();
                       //Implement send functionality.
                       _firestore.collection('messages').add({
                         'text': messageText,
                         'sender': loggedInUser.email,
+                        'timestamp': FieldValue.serverTimestamp(),
                       });
                     },
                     child: Text(
-                      'Send',
+                      'Enviar',
                       style: kSendButtonTextStyle,
                     ),
                   ),
@@ -102,9 +107,10 @@ class _ChatScreenState extends State<ChatScreen> {
 
   StreamBuilder getMessages() {
     return StreamBuilder<QuerySnapshot>(
-      stream: _firestore.collection('messages').snapshots(),
+      stream:
+          _firestore.collection('messages').orderBy('timestamp').snapshots(),
       builder: (context, snapshot) {
-        List<Text> messageWidgets = [];
+        List<MessageBubble> messageWidgets = [];
         if (!snapshot.hasData) {
           return Center(
             child: CircularProgressIndicator(
@@ -117,13 +123,21 @@ class _ChatScreenState extends State<ChatScreen> {
             final messageData = message.data();
             final messageText = messageData['text'];
             final messageSender = messageData['sender'];
-            final messageWidget = Text('$messageSender dijo $messageText');
+            final messageWidget = MessageBubble(
+              sender: messageSender,
+              text: messageText,
+            );
             messageWidgets.add(messageWidget);
           }
         }
-
-        return Column(
-          children: messageWidgets,
+        return Expanded(
+          child: ListView(
+            padding: EdgeInsets.symmetric(
+              horizontal: 10.0,
+              vertical: 20.0,
+            ),
+            children: messageWidgets,
+          ),
         );
       },
     );
