@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_chat/constants.dart';
 import 'package:firebase_chat/widgets/log_reg_buttons.dart';
 import 'package:flutter/material.dart';
@@ -15,6 +16,8 @@ class _LoginScreenState extends State<LoginScreen> {
     Icons.visibility_off,
     color: Colors.grey,
   );
+  String _email, _password;
+  String _onErrorText = '';
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -40,6 +43,7 @@ class _LoginScreenState extends State<LoginScreen> {
               keyboardType: TextInputType.emailAddress,
               onChanged: (value) {
                 //Do something with the user input.
+                _email = value;
               },
               decoration:
                   kTextFieldDecoration.copyWith(hintText: 'Ingresar email'),
@@ -52,6 +56,7 @@ class _LoginScreenState extends State<LoginScreen> {
               obscureText: _passwordHidden,
               onChanged: (value) {
                 //Do something with the user input.
+                _password = value;
               },
               decoration: kTextFieldDecoration.copyWith(
                 hintText: 'Ingresar contraseña',
@@ -68,13 +73,36 @@ class _LoginScreenState extends State<LoginScreen> {
               ),
             ),
             SizedBox(
+              height: 10.0,
+            ),
+            Text(
+              _onErrorText,
+              style: TextStyle(
+                color: Colors.red,
+              ),
+            ),
+            SizedBox(
               height: 24.0,
             ),
             LogRegWidget(
               color: Colors.lightBlueAccent,
               text: 'Log In',
-              onpress: () {},
-            )
+              onpress: () async {
+                try {
+                  UserCredential userCredential = await FirebaseAuth.instance
+                      .signInWithEmailAndPassword(
+                          email: _email, password: _password);
+                  if (userCredential != null) {
+                    Navigator.pushNamed(context, 'chat');
+                  }
+                } on FirebaseAuthException catch (e) {
+                  print(e);
+                  setState(() {
+                    _onErrorText = 'La cuenta no existe :\'(';
+                  });
+                }
+              },
+            ),
           ],
         ),
       ),
