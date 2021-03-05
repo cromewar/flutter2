@@ -1,6 +1,7 @@
 import 'package:firebase_chat/constants.dart';
 import 'package:firebase_chat/widgets/log_reg_buttons.dart';
 import 'package:flutter/material.dart';
+import 'package:firebase_chat/utils/hidden_buttom.dart';
 
 class LoginScreen extends StatefulWidget {
   static const String id = 'login';
@@ -9,6 +10,11 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
+  bool _passwordHidden = true;
+  Icon _passwordIcon = Icon(
+    Icons.visibility_off,
+    color: Colors.grey,
+  );
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -30,6 +36,8 @@ class _LoginScreenState extends State<LoginScreen> {
               height: 48.0,
             ),
             TextField(
+              textAlign: TextAlign.center,
+              keyboardType: TextInputType.emailAddress,
               onChanged: (value) {
                 //Do something with the user input.
               },
@@ -40,11 +48,23 @@ class _LoginScreenState extends State<LoginScreen> {
               height: 8.0,
             ),
             TextField(
+              textAlign: TextAlign.center,
+              obscureText: _passwordHidden,
               onChanged: (value) {
                 //Do something with the user input.
               },
               decoration: kTextFieldDecoration.copyWith(
                 hintText: 'Ingresar contraseña',
+                suffix: InkWell(
+                  child: _passwordIcon,
+                  onTap: () {
+                    setState(() {
+                      _passwordHidden = setHiddenPasword2(_passwordHidden);
+                      _passwordIcon =
+                          getHiddenIcon(_passwordIcon, _passwordHidden);
+                    });
+                  },
+                ),
               ),
             ),
             SizedBox(

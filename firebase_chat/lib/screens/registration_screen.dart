@@ -2,6 +2,7 @@ import 'package:firebase_chat/constants.dart';
 import 'package:firebase_chat/widgets/log_reg_buttons.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_chat/utils/hidden_buttom.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 class RegistrationScreen extends StatefulWidget {
   static const String id = 'registration';
@@ -16,6 +17,9 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
     Icons.visibility_off,
     color: Colors.grey,
   );
+
+  //firebase Auth
+  
 
   @override
   Widget build(BuildContext context) {
@@ -77,7 +81,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
             ),
             LogRegWidget(
               color: Colors.blueAccent,
-              text: 'Register',
+              text: 'Registrarse',
               onpress: () {
                 print(email);
                 print(password);
