@@ -19,7 +19,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
   );
 
   //firebase Auth
-  
+  final _auth = FirebaseAuth.instance;
 
   @override
   Widget build(BuildContext context) {
@@ -82,9 +82,16 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
             LogRegWidget(
               color: Colors.blueAccent,
               text: 'Registrarse',
-              onpress: () {
-                print(email);
-                print(password);
+              onpress: () async {
+                try {
+                  final newUser = await _auth.createUserWithEmailAndPassword(
+                      email: email, password: password);
+                  if (newUser != null) {
+                    Navigator.pushNamed(context, 'chat');
+                  }
+                } catch (e) {
+                  print(e);
+                }
               },
             )
           ],
