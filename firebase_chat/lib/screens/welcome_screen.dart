@@ -62,7 +62,7 @@ class _WelcomeScreenState extends State<WelcomeScreen>
                     fontWeight: FontWeight.w900,
                   ),
                   textAlign: TextAlign.start,
-                  totalRepeatCount: 1,
+                  totalRepeatCount: 3,
                   repeatForever: false,
                   speed: Duration(milliseconds: 200),
                 ),

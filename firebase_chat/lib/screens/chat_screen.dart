@@ -123,9 +123,12 @@ class _ChatScreenState extends State<ChatScreen> {
             final messageData = message.data();
             final messageText = messageData['text'];
             final messageSender = messageData['sender'];
+            final currentUser = loggedInUser.email;
+
             final messageWidget = MessageBubble(
               sender: messageSender,
               text: messageText,
+              itsMe: currentUser == messageSender,
             );
             messageWidgets.add(messageWidget);
           }
