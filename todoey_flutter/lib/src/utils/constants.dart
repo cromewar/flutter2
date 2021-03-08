@@ -15,3 +15,8 @@ TextStyle kSubtitleTextStyle = TextStyle(
   fontSize: 25.0,
   fontWeight: FontWeight.w500,
 );
+
+TextStyle kListTileTextStyle = TextStyle(
+  fontWeight: FontWeight.w600,
+  fontSize: 20.0,
+);
