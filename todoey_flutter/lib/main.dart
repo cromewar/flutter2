@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:todoey_flutter/src/routes/route_provider.dart';
 
 void main() => runApp(MyApp());
 
@@ -8,17 +9,8 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Todoey',
-      home: Scaffold(
-        appBar: AppBar(
-          title: Text('Todoey'),
-          centerTitle: true,
-        ),
-        body: Center(
-          child: Container(
-            child: Text('Hello World'),
-          ),
-        ),
-      ),
+      routes: getApproutes(),
+      initialRoute: '/',
     );
   }
 }
