@@ -11,6 +11,10 @@ class MyApp extends StatelessWidget {
       title: 'QR Reader',
       initialRoute: 'home',
       routes: getAppRoutes(),
+      theme: ThemeData.light().copyWith(
+          primaryColor: Colors.deepPurple,
+          floatingActionButtonTheme: FloatingActionButtonThemeData(
+              backgroundColor: Colors.deepPurple)),
     );
   }
 }
