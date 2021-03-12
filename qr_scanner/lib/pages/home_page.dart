@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:qr_scanner/pages/directions_page.dart';
 import 'package:qr_scanner/pages/maps_page.dart';
+import 'package:qr_scanner/providers/db_provider.dart';
 import 'package:qr_scanner/providers/ui_provider.dart';
 import 'package:qr_scanner/widgets/custom_navigator_bar.dart';
 import 'package:qr_scanner/widgets/scan_button.dart';
@@ -33,8 +34,12 @@ class _HomePageBody extends StatelessWidget {
     //obtener el provider
     final uiProvider = Provider.of<UiProvider>(context);
 
-    final currentIndext = uiProvider.selectedMenuOpt;
-    switch (currentIndext) {
+    final currentIndex = uiProvider.selectedMenuOpt;
+
+    //TODO: Temporal.. leer base de datos
+    DBProvider.db.database;
+
+    switch (currentIndex) {
       case 0:
         return MapHistory();
       case 1:
