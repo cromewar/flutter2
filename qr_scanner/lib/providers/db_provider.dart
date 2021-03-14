@@ -1,6 +1,8 @@
 import 'dart:io';
 
 import 'package:path_provider/path_provider.dart';
+import 'package:qr_scanner/models/scan_model.dart';
+export 'package:qr_scanner/models/scan_model.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:path/path.dart';
 
@@ -36,5 +38,31 @@ class DBProvider {
         ''');
       },
     );
+  }
+
+  //Forma tradicional de hacer insert de una row
+  Future<int> nuevoScanRaw(ScanModel nuevoScan) async {
+    final id = nuevoScan.id;
+    final tipo = nuevoScan.tipo;
+    final valor = nuevoScan.valor;
+
+    //Verficar que la base da datos existe
+    final db = await database;
+    final res = await db.rawInsert('''
+    INSERT INTO Scans(id, tipo, valor)
+      VALUES($id, $tipo, $valor) 
+    ''');
+    return res;
+  }
+
+  //Forma de devolver usando JSONS
+  Future<int> nuevoScan(ScanModel nuevoScan) async {
+    final db = await database;
+    final res = await db.insert(
+      'Scans',
+      nuevoScan.toJson(),
+    );
+    //ID del ultimo resultado
+    return res;
   }
 }
