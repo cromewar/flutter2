@@ -101,4 +101,23 @@ class DBProvider {
     );
     return res;
   }
+
+  // Deliting registers
+  Future<int> deleteScan(int id) async {
+    final db = await database;
+    final res = await db.delete(
+      'Scans',
+      where: 'id = ?',
+      whereArgs: [id],
+    );
+    return res;
+  }
+
+  Future<int> deleteAllRegistersFromDataBase() async {
+    final db = await database;
+    final res = await db.rawDelete('''
+      DELETE FROM Scans
+    ''');
+    return res;
+  }
 }
