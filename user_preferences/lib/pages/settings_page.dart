@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:user_preferences/widgets/menu_widget.dart';
 
 class SettingsPage extends StatelessWidget {
   static final String routeName = 'settings';
@@ -6,6 +7,7 @@ class SettingsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      drawer: MenuWidget(),
       appBar: AppBar(
         title: Text('Preferences'),
       ),
